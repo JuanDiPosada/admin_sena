@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class AreaController extends Controller
 {
     public function index(){
-        $categories= Area::all();
-        return view('area.index',compact('categories'));
+        $areas= Area::all();
+        return view('area.index',compact('areas'));
     }
     public function create(){
         return view('area.create');
@@ -23,6 +23,6 @@ class AreaController extends Controller
 
         $area->save();
 
-        return $area->name;
+        return redirect()->route('area.index');
     }
 }

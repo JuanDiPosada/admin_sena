@@ -24,6 +24,6 @@ class ComputerController extends Controller
 
         $computer->save();
 
-        return $computer;
+        return redirect()->route('computer.index');
     }
 }

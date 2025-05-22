@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ApprenticeController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ComputerController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TrainingCenterController;
 use App\Models\TrainingCenter;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +29,16 @@ route::get('computers',[ComputerController::class,'index'])->name('computer.inde
 route::get('computer/create',[ComputerController::class, 'create'])->name('computer.create');
 route::post('computer/store',[ComputerController::class,'store'])->name('computer.store');
 
+//rutas para apprentices
+route::get('apprentices',[ApprenticeController::class,'index'])->name('apprentice.index');
+route::get('apprentice/create',[ApprenticeController::class,'create'])->name('apprentice.create');
+route::post('apprentice/store',[ApprenticeController::class,'store'])->name('apprentice.store');
+
+
+route::get('courses',[CourseController::class,'index'])->name('course.index');
+route::get('course/create',[CourseController::class,'create'])->name('course.create');
+route::post('course/store',[CourseController::class,'store'])->name('course.store');
+
+route::get('teachers',[TeacherController::class,'index'])->name('teacher.index');
+route::get('teacher/create',[TeacherController::class,'create'])->name('teacher.create');
+route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.store');

@@ -1,0 +1,18 @@
+@extends('layouts.app')
+
+
+@section('content')
+
+<h3>registrar un aprendiz</h3>
+<form action="{{route('apprentice.store')}}" method="POST">
+    @csrf
+    <label for="name" class="mt-2">Nombre del aprendiz:</label>
+    <input type="text" id="name" name="name"><br>
+    <label for="email" class="mt-3">Email del aprendiz:</label>
+    <input type="email" name="email" id="email"><br>
+    <label for="cell_number" class="mt-3">Numero celular del aprendiz:</label>
+    <input type="number" name="cell_number" id="cell_number"><br>
+    <input type="submit" value="registrar aprendiz" class="m-2">
+</form>
+
+@endsection

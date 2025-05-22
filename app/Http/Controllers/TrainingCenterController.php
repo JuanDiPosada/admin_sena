@@ -25,7 +25,7 @@ class TrainingCenterController extends Controller
 
         $trainigCenter->save();
 
-        return $trainigCenter;
+        return redirect()->route('trininig_center.index');
 
     }
 }
