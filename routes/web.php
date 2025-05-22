@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //ruta principal
-Route::view('principal', 'principal');
+Route::view('/', 'principal')->name('principal');
 
 //rutas para area
 Route::get('areas',[AreaController::class, 'index'])->name('area.index');
