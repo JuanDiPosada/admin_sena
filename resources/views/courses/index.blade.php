@@ -21,6 +21,19 @@
                         <td>{{$course['id']}}</td>
                         <td>{{$course['course_number']}}</td>
                         <td>{{$course['day']}}</td>
+                        <td>
+                            <a href="{{route('course.show',$course['id'])}}">detalles</a>
+                        </td>
+                        <td>
+                            <a href="{{route('course.edit',$course['id'])}}">editar</a>
+                        </td>
+                        <td>
+                            <form action="{{route('course.destroy',$course['id'])}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit">eliminar</button>
+                            </form>
+                        </td>
                     </tr>
 
                 @endforeach

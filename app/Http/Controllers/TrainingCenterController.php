@@ -18,14 +18,39 @@ class TrainingCenterController extends Controller
     }
 
     public function store(Request $request)  {
-        $trainigCenter= new TrainingCenter();
+        $trainingCenter= new TrainingCenter();
 
-        $trainigCenter->name=$request->name;
-        $trainigCenter->location=$request->location;
+        $trainingCenter->name=$request->name;
+        $trainingCenter->location=$request->location;
 
-        $trainigCenter->save();
+        $trainingCenter->save();
 
-        return redirect()->route('trininig_center.index');
+        return redirect()->route('training_center.index');
 
     }
+    public function show($id)  {
+        $trainingCenter=TrainingCenter::find($id);
+
+        return view('training_centers.show',compact('trainingCenter'));
+    }
+
+    public function update(Request $request,TrainingCenter $trainingCenter) {
+         $trainingCenter->name=$request->name;
+         $trainingCenter->location=$request->location;
+
+         $trainingCenter->save();
+
+         return redirect()->route('training_center.index');
+    }
+
+    public function edit(TrainingCenter $trainingCenter){
+        return view('training_centers.edit', compact('trainingCenter'));
+    }
+
+    public function destroy(TrainingCenter $trainingCenter){
+        $trainingCenter->delete();
+
+        return redirect()->route('training_center.index');
+    }
+
 }

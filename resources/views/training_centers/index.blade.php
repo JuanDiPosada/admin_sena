@@ -17,13 +17,27 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($trainingCenters as $triningCenter)
+                @foreach ($trainingCenters as $trainingCenter)
                     <tr>
-                        <td>{{ $triningCenter['id'] }}</td>
-                        <td>{{$triningCenter['name']}}</td>
-                        <td>{{ $triningCenter['location'] }}</td>
+                        <td>{{ $trainingCenter['id'] }}</td>
+                        <td>{{$trainingCenter['name']}}</td>
+                        <td>{{ $trainingCenter['location'] }}</td>
+                        <td>
+                            <a href="{{route('training_center.show',$trainingCenter['id'])}}">ver mas</a>
+                        </td>
+                        <td>
+                            <a href="{{route('training_center.edit',$trainingCenter['id'])}}">editar</a>
+                        </td>
+                        <td>
+                            <form action="{{route('training_center.destroy',$trainingCenter['id'])}}" method="POST">
+                                @csrf
+                                @method('delete')
 
+                                <button type="submit">eliminar</button>
+                            </form>
+                        </td>
                     </tr>
+
                 @endforeach
             </tbody>
         </table>

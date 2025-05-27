@@ -30,7 +30,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropTrainingC">
             <li><a class="dropdown-item" href="{{route('training_center.create')}}">crear</a></li>
-            <li><a class="dropdown-item" href="{{route('trininig_center.index')}}">listar</a></li>
+            <li><a class="dropdown-item" href="{{route('training_center.index')}}">listar</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

@@ -22,8 +22,20 @@
                         <td>{{ $computer['id'] }}</td>
                         <td>{{$computer['number']}}</td>
                         <td>{{ $computer['brand'] }}</td>
-
-                    </tr>
+                        <td>
+                            <a href="{{route('computer.show',$computer['id'])}}">detalles</a>
+                        </td>
+                        <td>
+                            <a href="{{route('computer.edit',$computer['id'])}}">editar</a>
+                        </td>
+                        <td>
+                            <form action="{{route('computer.destroy',$computer->id)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit">eliminar</button>
+                            </form>
+                        </td>
+                    </tr
                 @endforeach
             </tbody>
         </table>

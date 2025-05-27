@@ -24,6 +24,20 @@
                         <td>{{ $apprentice['email'] }}</td>
                         <td>{{$apprentice['cell_number']}}</td>
 
+                        <td>
+                            <a href="{{route('apprentice.show',$apprentice['id'])}}">detalles</a>
+                        </td>
+                        <td>
+                            <a href="{{route('apprentice.edit',$apprentice['id'])}}">editar</a>
+                        </td>
+                        <td>
+                            <form action="{{route('apprentice.destroy',$apprentice['id'])}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit">eliminar</button>
+                            </form>
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>

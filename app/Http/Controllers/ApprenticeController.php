@@ -34,4 +34,26 @@ class ApprenticeController extends Controller
         return redirect()->route('apprentice.index');
 
     }
+    public function show(Apprentice $apprentice) {
+        return view('apprentice.show',compact('apprentice'));
+    }
+    public function edit(Apprentice $apprentice) {
+        return view('apprentice.edit', compact('apprentice'));
+    }
+    public function update(Request $request, Apprentice $apprentice) {
+
+        $apprentice->name = $request->name;
+        $apprentice->email = $request->email;
+        $apprentice->cell_number = $request->cell_number;
+
+        $apprentice->save();
+
+        return redirect()->route('apprentice.index');
+    }
+    public function destroy(Apprentice $apprentice) {
+
+        $apprentice->delete();
+
+        return redirect()->route('apprentice.index');
+    }
 }
