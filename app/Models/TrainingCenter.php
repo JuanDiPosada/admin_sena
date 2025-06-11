@@ -13,4 +13,5 @@ class TrainingCenter extends Model
     public function teachers(){
         return $this->hasMany(Teacher::class);
     }
+    protected $fillable=['name','location'];
 }

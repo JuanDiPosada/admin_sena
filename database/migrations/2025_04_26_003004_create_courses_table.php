@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -20,6 +22,9 @@ return new class extends Migration
                 ->references('id')
                 ->on('areas')
                 ->onDelete('set null');
+
+            $table->unsignedBigInteger('trainingCenter_id')->nullable();
+            $table->foreign('trainingCenter_id')->references('id')->on('training_centers')->onDelete('set null');
 
             $table->timestamps();
         });

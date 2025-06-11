@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\course;
+use App\Models\TrainingCenter;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -14,16 +16,15 @@ class CourseController extends Controller
     }
 
     public function create()  {
-        return view('courses.create');
+        $areas=Area::all();
+        $trainingCenters=TrainingCenter::all();
+
+
+        return view('courses.create',compact('areas','trainingCenters'));
     }
 
     public function store(Request $request){
-        $course=new course();
-
-        $course->course_number=$request->course_number;
-        $course->day=$request->day;
-
-        $course->save();
+        $course=course::create($request->all());
 
         return redirect()->route('course.index');
 
@@ -32,13 +33,13 @@ class CourseController extends Controller
         return view('courses.show', compact('course'));
     }
     public function edit(course $course) {
-        return view('courses.edit', compact('course'));
+        $areas=Area::all();
+        $traningCenters=TrainingCenter::all();
+
+        return view('courses.edit', compact('course','areas','trainingCenters'));
     }
     public function update(Request $request, course $course) {
-        $course->course_number = $request->course_number;
-        $course->day = $request->day;
-
-        $course->save();
+        $course->update($request->all());
 
         return redirect()->route('course.index');
     }

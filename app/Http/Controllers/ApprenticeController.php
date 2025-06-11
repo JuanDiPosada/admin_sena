@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\apprentice;
+use App\Models\Computer;
+use App\Models\course;
 use Illuminate\Http\Request;
 
 class ApprenticeController extends Controller
@@ -16,20 +18,17 @@ class ApprenticeController extends Controller
     }
 
     public function create()  {
+        $courses=course::all();
+        $computers=Computer::all();
 
-        return view('apprentice.create');
+        return view('apprentice.create',compact('courses','computers'));
 
     }
 
     public function store(Request $request){
 
-        $aprentice=new apprentice();
 
-        $aprentice->name=$request->name;
-        $aprentice->email=$request->email;
-        $aprentice->cell_number=$request->cell_number;
-
-        $aprentice->save();
+        $apprentice=apprentice::create($request->all());
 
         return redirect()->route('apprentice.index');
 
@@ -38,15 +37,14 @@ class ApprenticeController extends Controller
         return view('apprentice.show',compact('apprentice'));
     }
     public function edit(Apprentice $apprentice) {
-        return view('apprentice.edit', compact('apprentice'));
+        $courses=course::all();
+        $computers=Computer::all();
+
+        return view('apprentice.edit', compact('apprentice','courses','computers'));
     }
     public function update(Request $request, Apprentice $apprentice) {
 
-        $apprentice->name = $request->name;
-        $apprentice->email = $request->email;
-        $apprentice->cell_number = $request->cell_number;
-
-        $apprentice->save();
+        $apprentice->update($request->all());
 
         return redirect()->route('apprentice.index');
     }

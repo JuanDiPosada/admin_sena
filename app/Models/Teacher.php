@@ -16,4 +16,6 @@ class Teacher extends Model
     public function trainingCenter(){
         return $this->belongsTo(TrainingCenter::class);
     }
+
+    protected $fillable=['name','email','area_id','trainingCenter_id'];
 }

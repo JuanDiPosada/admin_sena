@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TrainingCenter;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class TrainingCenterController extends Controller
@@ -18,12 +19,7 @@ class TrainingCenterController extends Controller
     }
 
     public function store(Request $request)  {
-        $trainingCenter= new TrainingCenter();
-
-        $trainingCenter->name=$request->name;
-        $trainingCenter->location=$request->location;
-
-        $trainingCenter->save();
+        $trainingCenter=TrainingCenter::create($request->all());
 
         return redirect()->route('training_center.index');
 
@@ -35,10 +31,7 @@ class TrainingCenterController extends Controller
     }
 
     public function update(Request $request,TrainingCenter $trainingCenter) {
-         $trainingCenter->name=$request->name;
-         $trainingCenter->location=$request->location;
-
-         $trainingCenter->save();
+         $trainingCenter->update($request->all());
 
          return redirect()->route('training_center.index');
     }

@@ -17,12 +17,7 @@ class ComputerController extends Controller
         return view('computer.create');
     }
     public function store(Request $request)  {
-        $computer=new Computer();
-
-        $computer->number=$request->number;
-        $computer->brand=$request->brand;
-
-        $computer->save();
+        $computer=Computer::create($request->all());
 
         return redirect()->route('computer.index');
     }
@@ -31,10 +26,7 @@ class ComputerController extends Controller
     }
 
     public function update(Request $request,Computer $computer)  {
-        $computer->number=$request->number;
-        $computer->brand=$request->brand;
-
-        $computer->save();
+        $computer->update($request->all());
 
         return redirect()->route('computer.index');
     }

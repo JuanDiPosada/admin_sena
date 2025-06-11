@@ -12,7 +12,22 @@
     <input type="email" name="email" id="email"><br>
     <label for="cell_number" class="mt-3">Numero celular del aprendiz:</label>
     <input type="number" name="cell_number" id="cell_number"><br>
+    <label for="">Curso al que pertenece</label>
+    <select name="course_id" id="">
+        @foreach ($courses as $course)
+            <option value="{{$course->id}}">{{$course->course_number}}</option>
+        @endforeach
+
+    </select><br>
+    <label for="">computador:</label>
+    <select name="computer_id" id="">
+        @foreach ($computers as $computer)
+            <option value="{{$computer->id}}">{{$computer->number}}---{{$computer->brand}}</option>
+        @endforeach
+    </select><br>
     <input type="submit" value="registrar aprendiz" class="m-2">
+
+
 </form>
 
 @endsection

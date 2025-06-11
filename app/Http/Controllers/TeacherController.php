@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\Teacher;
+use App\Models\TrainingCenter;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -14,16 +16,14 @@ class TeacherController extends Controller
     }
 
     public function create()  {
-        return view('teacher.create');
+        $areas = Area::all();
+        $trainingCenters = TrainingCenter::all();
+
+        return view('teacher.create',compact('areas', 'trainingCenters'));
     }
 
     public function store(Request $request)  {
-        $teacher=new Teacher();
-
-        $teacher->name=$request->name;
-        $teacher->email=$request->email;
-
-        $teacher->save();
+        $teacher=Teacher::create($request->all());
 
         return redirect()->route('teacher.index');
     }
@@ -34,10 +34,7 @@ class TeacherController extends Controller
 
     public function update(Request $request,Teacher $teacher) {
 
-        $teacher->name=$request->name;
-        $teacher->email=$request->email;
-
-        $teacher->save();
+        $teacher->update($request->all());
 
         return redirect()->route('teacher.index');
 
