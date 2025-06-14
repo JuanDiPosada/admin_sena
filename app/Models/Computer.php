@@ -13,6 +13,6 @@ class Computer extends Model
     }
 
     protected $fillable=[
-        'number','brand'
+        'number','brand','urlImage'
     ];
 }

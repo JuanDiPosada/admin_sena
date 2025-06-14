@@ -17,7 +17,17 @@ class ComputerController extends Controller
         return view('computer.create');
     }
     public function store(Request $request)  {
-        $computer=Computer::create($request->all());
+
+        $file = $request->file("urlImage");
+        $nombreArchivo = "img_" . time() . "." . $file->guessExtension();
+        $request->file('urlImage')->storeAs('media', $nombreArchivo, 'public');
+
+        $procesado=$request->except('urlImage');
+        $procesado['urlImage']=$nombreArchivo;
+
+
+        $computer=Computer::create($procesado);
+
 
         return redirect()->route('computer.index');
     }
